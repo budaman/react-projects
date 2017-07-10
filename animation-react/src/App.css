@@ -103,3 +103,27 @@ button:hover:enabled{
    width: 200px;
    font-size: 1rem;
 }
+
+/* starting stage of animation */
+.fade-enter {
+   transform: rotateX(60deg);
+   transform: rotateY(60deg);
+}
+
+
+
+/* ending stage of animation */
+.fade-enter-active {
+   transform: rotateX(0deg);
+   transform: rotateY(0deg);
+   transition: 0.5s all ease-in;
+}
+
+.fade-leave {
+   opacity: 1;
+}
+
+.fade-leave-active {
+   opacity: 0;
+   transition: 0.5s all ease-in;
+}

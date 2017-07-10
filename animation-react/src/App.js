@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group'); // ES5 with npm
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+
+
+let id = 0;
 
 class App extends Component {
    constructor(props) {
 		super(props);
 		this.state = {
-      quotes: ['Hey, this is my first post. It comes from REACT state property',
-      'This is my second post, it also comes from State prop, and if you want, you can remove it or update it'],
+      quotes: [{id: ++id, value: 'Hey, this is my first post. It comes from REACT state property'},
+      {id: ++id, value: 'This is my second post, it also comes from State prop, and if you want, you can remove it or update it'}],
       inputValue: "",
       updateInputValue: "",
       isItUpdate: "",
-      elementIndex: null
+      id: id,
+      updateIndex: ""
       };
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleChange = this.handleChange.bind(this);
@@ -24,12 +29,16 @@ callUpdateEl(i) {
    if(this.state.isItUpdate==="") {
    this.setState({
       isItUpdate: i,
-      updateInputValue: this.state.quotes[i]
+      updateInputValue: this.state.quotes[i].value,
+      updateIndex: this.state.quotes[i].id
    });
 } else {
+
+var newObj = {id: this.state.updateIndex, value: this.state.updateInputValue};
 var quotes = this.state.quotes;
-var updating = this.state.updateInputValue;
-quotes.splice(this.state.isItUpdate,1,updating);
+quotes.splice(this.state.isItUpdate,1,newObj);
+console.log(quotes);
+
 this.setState({
    isItUpdate: "",
    updateInputValue: ""
@@ -64,9 +73,10 @@ handleRemove(i){
 handleSubmit(){
    let value = this.state.inputValue;
    let quotes = this.state.quotes;
-   let newItems = quotes.concat(value);
+   quotes.push({id: ++id, value: value});
+   console.log(this.state.id);
    this.setState({
-      quotes: newItems,
+      quotes: quotes,
       inputValue: ""
    })
 }
@@ -76,10 +86,12 @@ handleSubmit(){
       var update = this.state.isItUpdate;
 
       const todoItems = this.state.quotes.map((quote, i) =>{
+
+
          return (
 
-               <div key={i}  className="todo-item">
-                  <div className="text">{quote}</div>
+               <div key={quote.id}  className="todo-item">
+                  <div className="text">{quote.value}</div>
                   <button
                      className="remove-btn"
                      onClick={() => this.handleRemove(i)}
@@ -102,6 +114,11 @@ handleSubmit(){
          )
       });
 
+      const transitionOptions = {
+         transitionName: "fade",
+         transitionEnterTimeout: 500,
+         transitionLeaveTimeout: 500
+      }
 
 		return (
          <div className="container">
@@ -120,9 +137,13 @@ handleSubmit(){
                   >Add</button>
             </div>
             <hr/>
+
             <div className="todo-box">
+               <ReactCSSTransitionGroup {...transitionOptions}>
             {todoItems}
-         </div>
+               </ReactCSSTransitionGroup>
+            </div>
+
          </div>
 		);
 	}
