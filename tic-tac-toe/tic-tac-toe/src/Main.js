@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 
-
 class Main extends Component {
    constructor(props) {
       super(props);
@@ -14,6 +13,7 @@ class Main extends Component {
            ],
            checkForWinner: false
         }
+
    }
 
    checkForWinner ()  {
@@ -30,9 +30,9 @@ class Main extends Component {
 
    handleClick(index) {
      if(this.state.board[index] === "") {
-      var nowBoard  = this.state.board; //kad nekeist tiesiogiai state, galima tiesiog susikurti kintamaji ir viskas buna gerai
-      nowBoard[index] = this.state.currentTurn;
+        this.state.board[index] = this.state.currentTurn;
         this.setState({
+           board: this.state.board,
            currentTurn: this.state.currentTurn === this.state.PLAYER_ONE_SYMBOL ? this.state.PLAYER_TWO_SYMBOL : this.state.PLAYER_ONE_SYMBOL
         })
         if(this.checkForWinner()) {
@@ -43,30 +43,27 @@ class Main extends Component {
      }
    }
 
+
     render() {
-      var cells = this.state.board.map((cell, index) => {
-         return <div
-              key={index}
-              className="square"
-              onClick={() => this.handleClick(index)}
-              > {cell} </div>
-      } )
        var tikrinti = this.state.checkForWinner;
-
-
       return (
-
      <div className="container">
      <div className="board">
-
-        {cells}
+        {this.state.board.map((cell, index) => {
+           return <div
+                key={index}
+                style={{fontSize:'5em'}}
+                className="square"
+                onClick={() => this.handleClick(index)}
+                > {cell} </div>
+        } )}
 
      </div>
      {tikrinti && <div className="victory">Sveikiname</div>}
    </div>
-
    );
     }
 }
+
 
 export default Main;

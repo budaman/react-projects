@@ -1,3 +1,18 @@
+/*HEADER STARTS*/
+.header {
+   width: 100vw;
+   height: 100vh;
+}
+
+.header img {
+   
+}
+
+
+/*HEADER ENDS*/
+
+
+/* MAIN SECTION */
 .container {
    width: 100vw;
    height: 100vh;
@@ -18,9 +33,11 @@
    height: 100px;
    box-sizing: border-box; /*kad nekistu dydis atsirandant contentui */
    border: 2px solid black;
+   font-size: 0.1em;
    display: flex;
    justify-content: center;
    align-items: center;
+   transition: font-size 5s ease;
 }
 
 .square:hover {
@@ -31,24 +48,8 @@
 .victory {
    display: flex;
    justify-content: center;
+   font-size: 3em;
    color: yellow;
 }
 
-/* starting stage of animation */
-.fade-enter {
-   opacity: 0;
-}
-/* ending stage of animation */
-.fade-enter-active {
-   opacity: 1;
-   transition: 0.5s all ease-in;
-}
-
-.fade-leave {
-   font-size: 0;
-}
-
-.fade-leave-active {
-   font-size: 2rem;
-   transition: 0.5s all ease-in;
-}
+/*Main section ends */
