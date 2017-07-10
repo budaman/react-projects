@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Main from './Main';
 import './App.css';
 
 
@@ -50,20 +51,7 @@ handleClick(index) {
   render() {
      var tikrinti = this.state.checkForWinner;
     return (
-   <div className="container">
-   <div className="board">
-      {this.state.board.map((cell, index) => {
-         return <div
-              key={index}
-              style={{fontSize:'5em'}}
-              className="square"
-              onClick={() => this.handleClick(index)}
-              > {cell} </div>
-      } )}
-
-   </div>
-   {tikrinti && <div className="victory">Sveikiname</div>}
-</div>
+   <Main />
 );
   }
 }

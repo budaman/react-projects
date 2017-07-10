@@ -109,9 +109,6 @@ button:hover:enabled{
    transform: rotateX(60deg);
    transform: rotateY(60deg);
 }
-
-
-
 /* ending stage of animation */
 .fade-enter-active {
    transform: rotateX(0deg);
