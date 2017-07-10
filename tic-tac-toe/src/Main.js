@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 
-
 class Main extends Component {
    constructor(props) {
       super(props);
@@ -30,6 +29,7 @@ class Main extends Component {
 
    handleClick(index) {
      if(this.state.board[index] === "") {
+
       var nowBoard  = this.state.board; //kad nekeist tiesiogiai state, galima tiesiog susikurti kintamaji ir viskas buna gerai
       nowBoard[index] = this.state.currentTurn;
         this.setState({
@@ -49,7 +49,8 @@ class Main extends Component {
               key={index}
               className="square"
               onClick={() => this.handleClick(index)}
-              > {cell} </div>
+              > <div className={this.state.board[index] !== "" ? 'slide' : "" }
+                 > {cell} </div> </div>
       } )
        var tikrinti = this.state.checkForWinner;
 

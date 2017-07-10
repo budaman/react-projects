@@ -11,6 +11,7 @@
    flex-direction: row;
    flex-wrap: wrap;
    border: 2px solid black;
+   border-radius: 3px;
 }
 
 .square {
@@ -18,6 +19,7 @@
    height: 100px;
    box-sizing: border-box; /*kad nekistu dydis atsirandant contentui */
    border: 2px solid black;
+   font-weight: 600;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -34,21 +36,15 @@
    color: yellow;
 }
 
-/* starting stage of animation */
-.fade-enter {
-   opacity: 0;
-}
-/* ending stage of animation */
-.fade-enter-active {
-   opacity: 1;
-   transition: 0.5s all ease-in;
+.slide {
+   animation: slide 0.5s ease-in forwards;
 }
 
-.fade-leave {
-   font-size: 0;
-}
-
-.fade-leave-active {
-   font-size: 2rem;
-   transition: 0.5s all ease-in;
+@keyframes slide {
+   0% {
+      transform: scale(0%);
+   }
+   100%{
+      transform: scale(2);
+   }
 }
