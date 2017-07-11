@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Main from './Main';
 import './App.css';
+import Start from './Start';
+
 
 
 
@@ -22,7 +24,10 @@ class App extends Component {
        transitionLeaveTimeout: 500
      }
     return (
+   <div className="container">
+   <Start />
    <Main />
+   </div>
 );
   }
 }

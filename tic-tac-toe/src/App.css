@@ -1,9 +1,108 @@
 .container {
-   width: 100vw;
-   height: 100vh;
+   padding: 0;
+   margin: 0;
+}
+#root {
+   padding: 0;
+   margin: 0;
 }
 
+/* Beggining animation starts */
+
+.bgCover {
+   position: relative;
+   padding-right: 0;
+   margin-right: 0;
+   background-image: url('./tic-tac-toe.jpg');
+   background-size: cover;
+   width: 98.7vw;
+   height: 100vh;
+   opacity: 1;
+   transform: scale(1.3);
+   transition: all 3s ease-in-out;
+   filter:contrast(10%);
+}
+
+.bgCoverAnimation  {
+   transform: scale(1);
+   filter:brightness(100%);
+   filter:contrast(100%);
+}
+
+.logoCont {
+   display: flex;
+   width: 100%;
+   justify-content: center;
+}
+
+.logo {
+   background-image: url('./react-logo.png');
+   background-size: cover;
+   width: 120px;
+   height: 120px;
+   transform: translateY(-700%);
+   transition: all 1s ease-out;
+}
+.logoAnimation {
+   transform: translateY(-500%);
+}
+
+.title {
+   display: flex;
+   justify-content: center;
+   transform: translate(-100%,-1125%);
+   font-size: 2.5rem;
+   font-weight: 800;
+   letter-spacing: 6px;
+   width: 100%;
+   transition: all 1s ease-in-out;
+}
+
+.titleAnimation {
+   transform: translate(0,-1125%);
+}
+
+.userInput {
+   display: none;
+}
+
+
+.userInputAppears {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   transform: translateY(-350%);
+}
+
+.play {
+    font-family:  "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+   background-color: #E4572E;
+   border: none;
+   font-size: 1.8rem;
+   font-weight: 600;
+   letter-spacing: 4px;
+   padding: 4px 20px;
+   border-radius: 2px;
+   margin-top: 30px;
+}
+
+.input {
+   height: 30px;
+   margin-top: 10px;
+   border: none;
+   border: 1px solid black;
+   text-align: center;
+   font-size: 1rem;
+   font-weight: 600;
+   background-color: #D4DF9E;
+}
+
+/* Beggining animation ends */
+
+
 .board {
+   padding: 0;
+   margin: 0;
    margin: auto;
    display: flex;
    width: 300px;
@@ -13,7 +112,6 @@
    border: 2px solid black;
    border-radius: 3px;
 }
-
 .square {
    width: 100px;
    height: 100px;
@@ -24,22 +122,18 @@
    justify-content: center;
    align-items: center;
 }
-
 .square:hover {
    cursor: pointer;
    background-color: #80cd92;
 }
-
 .victory {
    display: flex;
    justify-content: center;
    color: yellow;
 }
-
 .slide {
    animation: slide 0.5s ease-in forwards;
 }
-
 @keyframes slide {
    0% {
       transform: scale(0%);
