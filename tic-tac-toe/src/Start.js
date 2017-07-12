@@ -1,5 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+
+class PlayerInput extends Component {
+   constructor(props){
+      super(props);
+      this.state = {
+         username: ""
+      }
+      this.handleChange = this.handleChange.bind(this);
+      this.sendInfo = this.sendInfo.bind(this);
+   }
+
+   handleChange(e){
+      this.setState({
+         username: e.target.value
+      })
+   }
+
+   sendInfo(e) {
+      this.props.change(
+         this.props.id,
+         this.state.username
+      )
+   }
+   render(){
+      return (
+         <div>
+         <input
+            id="username"
+            className="input"
+            type="text"
+            placeholder="PlayerOne"
+            autoComplete='off'
+            onChange={this.handleChange}
+            onBlur={this.sendInfo}
+         />
+         </div>
+      )
+   }
+}
 
 class Start extends Component {
 
@@ -9,20 +48,48 @@ class Start extends Component {
         bgCover: false,
         title: false,
         logo: false,
-        input: false
+        input: false,
+        introStarts: true,
+        playerOne: '',
+        playerTwo: '',
+        playIsClicked: ''
+
      }
+     this.handleClick = this.handleClick.bind(this);
+     this.handleChange = this.handleChange.bind(this);
   }
 
    componentDidMount () {
       setTimeout(function() { this.setState({bgCover: true}); }.bind(this), 5);
-      setTimeout(function() { this.setState({title: true}); }.bind(this), 2000);
-      setTimeout(function() { this.setState({logo: true}); }.bind(this), 2000);
-      setTimeout(function() { this.setState({input: true}); }.bind(this), 3100);
+      setTimeout(function() { this.setState({title: true}); }.bind(this), 1000);
+      setTimeout(function() { this.setState({logo: true}); }.bind(this), 1000);
+      setTimeout(function() { this.setState({input: true}); }.bind(this), 2100);
+   }
+
+   handleChange(id, username){
+      this.setState(function(){
+         var newState = {};
+         newState[id] = username;
+         return newState
+      })
+      this.props.getNames(
+         id,
+         username
+      )
+   }
+
+   handleClick(){
+      this.setState({
+         introStarts: false,
+         playIsClicked: true
+      })
+      console.log(this.state.playerOne + " " + this.state.playerTwo);
    }
 
    render() {
+
       return (
-        <div className="animationContainer">
+        <div className={"animationContainer " + (this.state.introStarts ? '' : 'intro-over')}>
         <div className={"bgCover " + (this.state.bgCover ? 'bgCoverAnimation' : '')}>
         </div>
         <div className="logoCont">
@@ -33,19 +100,25 @@ class Start extends Component {
         <span style={{color:  '#001011'}}>Tac</span>-
         <span style={{color:  '#FFC914'}}>Toe</span> </h3>
         <div className={"userInput "+ (this.state.input ? 'userInputAppears' : '')}>
-           <input
+
+           <PlayerInput
+             id="playerOne"
+             label="Player One"
              className="input"
-             type="text"
-             placeholder="PlayerOne"
+             change={this.handleChange}
            />
-           <input
-             className="input"
-           type="text"
-           placeholder="PlayerTwo"
+           <PlayerInput
+            id="playerTwo"
+            label="Player Two"
+            placeholder="PlayerTwo"
+            change={this.handleChange}
           />
-          <button className="play">Play!</button>
+          <button
+             className="play"
+             onClick={this.handleClick}
+             >Play!</button>
          </div>
-        </div>
+      </div>
       );
    }
 
