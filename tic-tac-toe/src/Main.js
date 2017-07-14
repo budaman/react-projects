@@ -101,10 +101,10 @@ class Main extends Component {
      <div className="game-container">
 
       <div className="currentTurn">
-         <div> Current Turn: {this.state.currentPlayer}  </div>
-         <div className="currentSign"
+         <div>{this.state.currentPlayer+ ':'}  </div>
+         <label className="currentSign"
             style={this.state.currentTurn==="X" ? {color: "#EEC643"} : {color: "#F5F7DC"}}
-            > {this.state.currentTurn}  </div>
+            > {this.state.currentTurn}  </label>
       </div>
 
      <div className="board">

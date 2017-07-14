@@ -30,7 +30,7 @@ class PlayerInput extends Component {
             id="username"
             className="input"
             type="text"
-            placeholder="PlayerOne"
+            placeholder={this.props.label}
             autoComplete='off'
             onChange={this.handleChange}
             onBlur={this.sendInfo}
@@ -56,9 +56,9 @@ class Start extends Component {
   }
 
    componentDidMount () {
-      setTimeout(() => { this.setState({title: true}); }, 1000);
-      setTimeout(() => { this.setState({logo: true}); }, 1000);
-      setTimeout(() => { this.setState({input: true}); }, 2100);
+      setTimeout(() => { this.setState({title: true}); }, 700);
+      setTimeout(() => { this.setState({logo: true}); }, 700);
+      setTimeout(() => { this.setState({input: true}); }, 1500);
    }
 
    handleChange(id, username){
@@ -94,9 +94,9 @@ class Start extends Component {
         <div className={'logo ' + (this.state.logo ? 'logoAnimation' : '')}></div>
          </div>
         <h3 className={"title " + (this.state.title ? 'titleAnimation' : '')}>
-         <span style={{color:  'white'}}>tic</span>-
-        <span style={{color:  '#001011'}}>tac</span>-
-        <span style={{color:  'white'}}>toe</span> </h3>
+         <span style={{color: '#001011'}}>tic</span>-
+        <span style={{color:  'white'}}>tac</span>-
+        <span style={{color:  '#001011'}}>toe</span> </h3>
 
 
 {/*-----------------   GETTING INPUTS  ---------------------*/}
@@ -110,7 +110,7 @@ class Start extends Component {
            <PlayerInput
             id="playerTwo"
             label="Player Two"
-            placeholder="PlayerTwo"
+            placeholder="Player Two"
             change={this.handleChange}
           />
           <button
