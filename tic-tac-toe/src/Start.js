@@ -41,29 +41,24 @@ class PlayerInput extends Component {
 }
 
 class Start extends Component {
-
    constructor(props) {
       super(props);
       this.state = {
-        bgCover: false,
         title: false,
         logo: false,
         input: false,
         introStarts: true,
         playerOne: '',
-        playerTwo: '',
-        playIsClicked: ''
-
+        playerTwo: ''
      }
      this.handleClick = this.handleClick.bind(this);
      this.handleChange = this.handleChange.bind(this);
   }
 
    componentDidMount () {
-      setTimeout(function() { this.setState({bgCover: true}); }.bind(this), 5);
-      setTimeout(function() { this.setState({title: true}); }.bind(this), 1000);
-      setTimeout(function() { this.setState({logo: true}); }.bind(this), 1000);
-      setTimeout(function() { this.setState({input: true}); }.bind(this), 2100);
+      setTimeout(() => { this.setState({title: true}); }, 1000);
+      setTimeout(() => { this.setState({logo: true}); }, 1000);
+      setTimeout(() => { this.setState({input: true}); }, 2100);
    }
 
    handleChange(id, username){
@@ -74,33 +69,38 @@ class Start extends Component {
       })
       this.props.getNames(
          id,
-         username
+         username,
       )
    }
+
 
    handleClick(){
       this.setState({
          introStarts: false,
-         playIsClicked: true
       })
-      console.log(this.state.playerOne + " " + this.state.playerTwo);
    }
-
    render() {
 
+/*-----------------------RETURN ELEMTNS------------------*/
+
+
+
       return (
+/*-----------------BEGGINING ANIMATION SECTION ---------------------*/
         <div className={"animationContainer " + (this.state.introStarts ? '' : 'intro-over')}>
-        <div className={"bgCover " + (this.state.bgCover ? 'bgCoverAnimation' : '')}>
+        <div className={"bgCover"}>
         </div>
         <div className="logoCont">
         <div className={'logo ' + (this.state.logo ? 'logoAnimation' : '')}></div>
          </div>
         <h3 className={"title " + (this.state.title ? 'titleAnimation' : '')}>
-         <span style={{color:  '#FFC914'}}>Tic</span>-
-        <span style={{color:  '#001011'}}>Tac</span>-
-        <span style={{color:  '#FFC914'}}>Toe</span> </h3>
-        <div className={"userInput "+ (this.state.input ? 'userInputAppears' : '')}>
+         <span style={{color:  'white'}}>tic</span>-
+        <span style={{color:  '#001011'}}>tac</span>-
+        <span style={{color:  'white'}}>toe</span> </h3>
 
+
+{/*-----------------   GETTING INPUTS  ---------------------*/}
+        <div className={"userInput "+ (this.state.input ? 'userInputAppears' : '')}>
            <PlayerInput
              id="playerOne"
              label="Player One"
@@ -121,7 +121,6 @@ class Start extends Component {
       </div>
       );
    }
-
 }
 
 export default Start;

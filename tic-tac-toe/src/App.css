@@ -1,11 +1,21 @@
-.container {
+@import url('https://fonts.googleapis.com/css?family=Fresca|Raleway|Roboto');
+.main-container {
    padding: 0;
    margin: 0;
 }
 #root {
+
+   font-family: 'Roboto', sans-serif;
+font-family: 'Fresca', sans-serif;
+font-family: 'Raleway', sans-serif;
+
    padding: 0;
    margin: 0;
 }
+
+
+
+/***********START**************/
 
 /* Beggining animation starts */
 
@@ -13,26 +23,16 @@
    position: relative;
    padding-right: 0;
    margin-right: 0;
-   background-image: url('./tic-tac-toe.jpg');
+   background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
    background-size: cover;
-   width: 98.7vw;
+   width: 100vw;
    height: 100vh;
-   opacity: 1;
-   transform: scale(1.3);
-   transition: all 2s ease-in-out;
-   filter:contrast(10%);
-   filter:blur(5px);
 }
 
 .intro-over {
    display: none;
 }
 
-.bgCoverAnimation  {
-   transform: scale(1);
-   filter:contrast(100%);
-   filter:blur(10px);
-}
 
 .logoCont {
    display: flex;
@@ -49,14 +49,14 @@
    transition: all 1s ease-out;
 }
 .logoAnimation {
-   transform: translateY(-500%);
+   transform: translateY(-450%);
 }
 
 .title {
    display: flex;
    justify-content: center;
    transform: translate(-100%,-1125%);
-   font-size: 2.5rem;
+   font-size: 2rem;
    font-weight: 800;
    letter-spacing: 6px;
    width: 100%;
@@ -64,13 +64,17 @@
 }
 
 .titleAnimation {
-   transform: translate(0,-1125%);
+   transform: translate(0,-1500%);
 }
+
+
+
+
+/******* Players Inputs **/
 
 .userInput {
    display: none;
 }
-
 
 .userInputAppears {
    display: flex;
@@ -84,13 +88,14 @@
    background:
    linear-gradient(#ad3a18, #e76944);
    border: none;
-   font-size: 1.6rem;
+   font-size: 1rem;
    font-weight: 600;
-   letter-spacing: 4px;
+   letter-spacing: 2px;
    padding: 4px 20px;
    border-radius: 2px;
    margin-top: 30px;
    cursor: pointer;
+   color: white;
 }
 
 .play:hover:enabled{
@@ -106,7 +111,7 @@
 
 
 .input {
-   height: 30px;
+   height: 20px;
    margin-top: 10px;
    border: none;
    border: 1px solid black;
@@ -114,10 +119,58 @@
    font-size: 1rem;
    font-weight: 600;
    background-color: #D4DF9E;
+   opacity: 0.7;
+   width: 150px;
+
+}
+/***********START ENDS**************/
+
+/***********MAIN **************/
+
+.game-container {
+   background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+    height: 100vh;
 }
 
-/* Beggining animation ends */
+.playersBoard {
+   position: relative;
+   margin-top: 30px;
+   display: flex;
+   justify-content: space-around;
+   height: 70px;
+   width: 300px;
+   margin: 0 auto;
+   margin-bottom: 40px;
+   color: #F5F7DC;
+   top: 50px;
+   letter-spacing: 2px;
+}
 
+.playersBoard h4 {
+   margin: 10px;
+}
+
+.currentTurn {
+   position: relative;
+   top: 50px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-bottom: 60px;
+
+}
+
+@keyframes mymove {
+    0% {opacity: 1;}
+    50% {opacity: 0.5;}
+    100% {opacity: 1}
+}
+.currentSign {
+   animation: mymove 1.5s infinite;
+   font-size: 2rem;
+   font-weight: 600;
+   margin-top: 10px;
+}
 
 .board {
    padding: 0;
@@ -128,28 +181,76 @@
    height: 300px;
    flex-direction: row;
    flex-wrap: wrap;
-   border: 2px solid black;
-   border-radius: 3px;
+   border-width: 2px;
+   border-style: solid;
+   border-color: rgba(0,0,99, 0.1);
+   border-radius: 5px;
+   background-color: rgba(20,20,20, 0.2);
 }
 .square {
    width: 100px;
    height: 100px;
    box-sizing: border-box; /*kad nekistu dydis atsirandant contentui */
-   border: 2px solid black;
+   border-width: 2px;
+   border-style: solid;
+   border-color: rgba(0,0,99, 0.1);
    font-weight: 600;
    display: flex;
    justify-content: center;
    align-items: center;
 }
+
+
+
 .square:hover {
    cursor: pointer;
-   background-color: #80cd92;
+   background-color: #5EB1BF;
 }
+
+
+.playerResults {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.playerResults div {
+   text-align: center;
+   font-size: 1.1rem;
+}
+
+.playerResults span {
+   color: #EEC643;
+   margin-top: 10px;
+}
+
+
 .victory {
+   background-color: #5EB1BF;
+   opacity: 0.9;
+   position: absolute;
    display: flex;
    justify-content: center;
-   color: yellow;
+   align-items: center;
+   flex-direction: column;
+   width: 100vw;
+   height: 100vh;
+   z-index: 300;
+   top: 0;
+   display: flex;
 }
+
+.whoWon {
+   color: #FFFD77;
+   font-size: 2rem;
+   margin-bottom: 25px;
+}
+
+.victory button {
+   height: 30px;
+   border-radius: 3px;
+}
+
 .slide {
    animation: slide 0.5s ease-in forwards;
 }
@@ -161,3 +262,4 @@
       transform: scale(2);
    }
 }
+/***********MAIN ENDS **************/

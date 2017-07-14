@@ -6,32 +6,29 @@ import Start from './Start';
 
 class App extends Component {
 
- constructor(props) {
-    super(props);
-    this.state = {
-      playerOne: '',
-      playerTwo: ''
-   }
-   this.getNames = this.getNames.bind(this);
-}
+   state = {
+    playerOne: '',
+    playerTwo: ''
+  }
 
-
-getNames(id, username) {
-   this.setState(function(){
-      var newState = {};
-      newState[id] = username;
-      return newState
-   }) 
-}
-
+  getNames = (id, username) => {
+     this.setState(function(){
+        var newState = {};
+        newState[id] = username;
+        return newState
+     })
+  }
 
   render() {
     return (
-   <div className="container">
+   <div className="main-container">
    <Start
       getNames={this.getNames}
    />
-   <Main />
+   <Main
+      playerOne={this.state.playerOne}
+      playerTwo={this.state.playerTwo}
+   />
    </div>
 );
   }
