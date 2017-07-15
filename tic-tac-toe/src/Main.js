@@ -17,7 +17,8 @@ class Main extends Component {
               "","","","","","","","",""
            ],
            checkForWinner: false,
-           whoWon: ''
+           whoWon: '',
+           draw: false
         }
         this.resetBoard = this.resetBoard.bind(this);
    }
@@ -28,10 +29,18 @@ class Main extends Component {
      })
   }
 
+  checkForDraw () {
+     var symbols = this.state.board;
+     const isEvery =  symbols.every(symb => symb !== "");
+     this.setState({
+        draw: isEvery
+     })
+ }
+
    checkForWinner ()  {
      var winningCombos = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
      var symbols = this.state.board;
-     return winningCombos.find(function(combo){
+      return winningCombos.find(function(combo){
          if(symbols[combo[0]]===symbols[combo[1]] && symbols[combo[1]] === symbols[combo[2]]) {
            return symbols[combo[0]] } else {
              return false
@@ -41,7 +50,6 @@ class Main extends Component {
 
    handleClick(index) {
      if(this.state.board[index] === "") {
-
       var nowBoard  = this.state.board; //kad nekeist tiesiogiai state, galima tiesiog susikurti kintamaji ir viskas buna gerai
       nowBoard[index] = this.state.currentTurn;
         this.setState({
@@ -49,6 +57,7 @@ class Main extends Component {
            currentPlayer: this.state.currentTurn === this.state.PLAYER_ONE_SYMBOL ? this.props.playerTwo : this.props.playerOne,
            playerId: this.state.currentTurn === this.state.PLAYER_ONE_SYMBOL ? 'playerTwo' : 'playerOne'
         })
+
         if(this.checkForWinner()) {
            var current = [];
            //tik apacioje esanciu budu imanoma atskirti, kuriam priskirti pergale
@@ -57,18 +66,18 @@ class Main extends Component {
            current['playerTwo'] = this.state.playerTwoVictories;
            current[this.state.playerId] ++;
 
-           console.log(current[this.state.playerId]);
-
            this.setState(()=>{
              var newState = {};
              newState[this.state.playerId + 'Victories'] =  current[this.state.playerId];
              newState['checkForWinner'] = 'true';
              newState['whoWon'] = this.state.currentPlayer;
-             console.log(newState)
              return newState
           }
            )
         }
+        this.checkForDraw()
+
+
      }
    }
 
@@ -77,7 +86,8 @@ class Main extends Component {
          board: [
             "","","","","","","","",""
          ],
-         checkForWinner: false
+         checkForWinner: false,
+         draw: false
       })
    }
 
@@ -97,6 +107,8 @@ class Main extends Component {
                </div>
       } )
        var setIsOver= this.state.checkForWinner;
+       var draw = this.state.draw;
+
       return (
      <div className="game-container">
 
@@ -110,12 +122,20 @@ class Main extends Component {
      <div className="board">
         {cells}
      </div>
-     {setIsOver && <div className="victory">
+     {setIsOver  && <div className="victory">
         <div className="whoWon">{this.state.whoWon+ ": "}Has Won</div>
         <button
+           className="play"
            onClick={this.resetBoard}
            >Play Again? </button>
        </div>}
+       {draw && !setIsOver && <div className="victory">
+          <div className="whoWon">It's a draw....</div>
+          <button
+             className="play"
+             onClick={this.resetBoard}
+             >Play Again? </button>
+         </div>}
      <div className="playersBoard">
         <div className="playerResults">
            <div>{this.props.playerOne+ ":"}</div>
