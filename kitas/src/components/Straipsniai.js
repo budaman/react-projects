@@ -1,24 +1,22 @@
 import React, {Component} from 'react';
 import Nav from '../Nav';
 
-class Apzvalgos extends Component {
-
-
+class Straipsniai extends Component {
 
 
    render(){
 
 
       return (
-         <div className="apzvalgos-container">
+         <div className="straipsniai-container">
             <Nav
                handleClick={this.props.handleClick}
              />
-            <div>{this.props.pages[0]} </div>
+            <div>{this.props.pages[1]} </div>
          </div>
       )
    }
 }
 
 
-export default Apzvalgos;
+export default Straipsniai;

@@ -6,7 +6,6 @@ class Local extends Component {
 
    render(){
 
-
       return (
          <div className="localContainer">
             <div className="logo-text" >
@@ -20,7 +19,6 @@ class Local extends Component {
                onClick={this.props.handleClick}
                >
             </div>
-
          </div>
       )
    }

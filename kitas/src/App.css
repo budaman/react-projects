@@ -7,6 +7,14 @@
 }
 
 
+li {
+   list-style-type: none;
+}
+
+a{
+   text-decoration: none;
+}
+
 .localContainer {
    position: absolute;
    top: 0;
@@ -69,7 +77,7 @@
 .pages {
    display: flex;
    justify-content: center;
-   color: #f5f5f5;
+
    list-style-type: none;
    font-size: 2.3rem;
    padding: 7px;
@@ -80,11 +88,19 @@
    transition: all 0.25s ease-in-out;
 }
 
+.pages a {
+   color: #f5f5f5;
+}
+
 .pages:hover {
-   color: #252423;
+
    background-color: #f5f5f5;
    font-weight: 500;
    margin-left:  5px;
+}
+
+.pages a:hover {
+   color: #252423;
 }
 
 .close {
